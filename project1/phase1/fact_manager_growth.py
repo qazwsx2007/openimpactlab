@@ -2,6 +2,7 @@ import json
 import os
 import requests
 import json
+import time
 
 # Define the API endpoint URL for a random fact
 API_URL = "https://uselessfacts.jsph.pl/api/v2/facts/random"
@@ -101,11 +102,11 @@ def add_unique_fact(new_fact_text):
 # --- Example Usage ---
 if __name__ == "__main__":
     print("--- Running Fact Archive Manager ---")
-    for i in range(10):
-        print(f"Adding fact {i+1}...")
+    while True:
         fact = get_random_fact()
         # Add the first fact (should be new)
         add_unique_fact(fact)
+        time.sleep(60)
 
     # Print final state of the archive
     final_archive = load_facts()
